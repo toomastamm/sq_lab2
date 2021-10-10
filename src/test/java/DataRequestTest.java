@@ -63,12 +63,4 @@ public class DataRequestTest {
                         "-----------\r\n" +
                         "Returning to menu.\r\n", outContent.toString());
     }
-
-
-    @Test
-    public void out() {
-        System.out.println("hello");
-        System.out.println("it is I");
-        Assertions.assertEquals("hello\r\nit is I\r\n", outContent.toString());
-    }
 }
