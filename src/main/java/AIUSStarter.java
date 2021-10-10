@@ -50,12 +50,17 @@ public class AIUSStarter {
             try {
                 System.out.println("Claim sum:");
                 sum = Float.parseFloat(s.nextLine());
+                if (sum < 0) {
+                    sum = null;
+                    System.out.println("Amount to claim has to be bigger than 0.");
+                }
             } catch (Exception ignored) {
 
             }
         }
 
         InsuranceClaim newClaim = new InsuranceClaim(name, description, sum, false);
+
         claims.add(newClaim);
         newClaim.setID(claims.indexOf(newClaim));
 
@@ -77,12 +82,24 @@ public class AIUSStarter {
             }
 
         }
-        claims.get(inputID).setApproved(true);
+
+        InsuranceClaim claim = claims.get(inputID);
+        if (claim.isApproved()) {
+            System.out.println("This claim is already approved.");
+            return;
+        }
+
+        claim.setApproved(true);
 
         System.out.println("Claim " + inputID + " has been approved, returning to menu.");
     }
 
     public static void requestInsuranceClaimsData() {
+        if (claims.size() == 0) {
+            System.out.println("There are no claims in the database");
+            return;
+        }
+
         for (InsuranceClaim claim : claims) {
             System.out.println("-----------");
             System.out.println("ID: " + claim.getID());
