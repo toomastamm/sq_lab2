@@ -26,7 +26,7 @@ public class AIUSStarter {
             switch (input) {
                 case "1" -> System.exit(0);
                 case "2" -> fileInsuranceClaim(s);
-                case "3" -> throw new UnsupportedOperationException();
+                case "3" -> approveInsuranceClaim(s);
                 case "4" -> throw new UnsupportedOperationException();
                 default -> {
                 }
