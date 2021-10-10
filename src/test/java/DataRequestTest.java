@@ -1,9 +1,7 @@
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import java.util.Scanner;
@@ -49,18 +47,24 @@ public class DataRequestTest {
         AIUSStarter.fileInsuranceClaim(s);
 
         AIUSStarter.requestInsuranceClaimsData();
-        Assertions.assertTrue(outContent.toString().contains
-                (
-                "-----------\r\n" +
-                "ID: 0\r\n" +
-                "Name: TestingName\r\n" +
-                "Description: TestingDescription\r\n" +
-                "Amount: 9999.99\r\n" +
-                "-----------\r\n" +
-                "ID: 1\r\n" +
-                "Name: SecondTestEntry\r\n" +
-                "Description: SecondDescription\r\n" +
-                "Amount: 55.0\r\n"
-                ));
+        System.out.println("Debug console prints");
+        Assertions.assertTrue(outContent.toString().replace("\r", "").contains
+                ("-----------\n" +
+                        "ID: 0\n" +
+                        "Name: TestingName\n" +
+                        "Description: TestingDescription\n" +
+                        "Amount: 9999.99\n" +
+                        "-----------\n" +
+                        "ID: 1\n" +
+                        "Name: SecondTestEntry\n" +
+                        "Description: SecondDescription\n" +
+                        "Amount: 55.0"));
+    }
+
+    @Test
+    public void testNoClaims() {
+        AIUSStarter.init();
+        AIUSStarter.requestInsuranceClaimsData();
+        Assertions.assertTrue(outContent.toString().contains("There are no claims in the database"));
     }
 }
