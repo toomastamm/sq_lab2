@@ -17,7 +17,7 @@ public class AIUSStarter {
             System.out.println("1. Exit");
             System.out.println("2. File insurance claim");
             System.out.println("3. Approve insurance claim");
-            System.out.println("4. ");
+            System.out.println("4. Show all insurance claims");
             System.out.println("-----------");
             System.out.println("Choose action: ");
 
@@ -27,7 +27,7 @@ public class AIUSStarter {
                 case "1" -> System.exit(0);
                 case "2" -> fileInsuranceClaim(s);
                 case "3" -> approveInsuranceClaim(s);
-                case "4" -> throw new UnsupportedOperationException();
+                case "4" -> requestInsuranceClaimsData();
                 default -> {
                 }
             }
