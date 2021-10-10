@@ -16,7 +16,7 @@ public class AIUSStarter {
             System.out.println("-----------");
             System.out.println("1. Exit");
             System.out.println("2. File insurance claim");
-            System.out.println("3. ");
+            System.out.println("3. Approve insurance claim");
             System.out.println("4. ");
             System.out.println("-----------");
             System.out.println("Choose action: ");
@@ -49,8 +49,27 @@ public class AIUSStarter {
         System.out.println("Claim sum:");
         float sum = Float.parseFloat(s.nextLine());
 
-        claims.add(new InsuranceClaim(name, description, sum, false));
+        InsuranceClaim newClaim = new InsuranceClaim(name, description, sum, false);
+        claims.add(newClaim);
+        newClaim.setID(claims.indexOf(newClaim));
+
         System.out.println("Your claim has been filed, returning to menu.");
+    }
+
+    public static void approveInsuranceClaim(Scanner s) {
+        System.out.println("-----------");
+        System.out.println("ID of insurance claim that will be approved:");
+        String inputIDString = s.nextLine();
+        int inputID = Integer.parseInt(inputIDString);
+
+        if (inputID >= claims.size() || inputID < 0)
+        {
+            System.out.println("Invalid index, returning to menu.");
+            return;
+        }
+        claims.get(inputID).setApproved(true);
+
+        System.out.println("Claim " + inputIDString + " has been approved, returning to menu.");
     }
 }
 
