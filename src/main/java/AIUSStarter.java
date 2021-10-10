@@ -71,5 +71,16 @@ public class AIUSStarter {
 
         System.out.println("Claim " + inputIDString + " has been approved, returning to menu.");
     }
+
+    public static void requestInsuranceClaimsData() {
+        for (InsuranceClaim claim : claims)
+        {
+            System.out.println("-----------");
+            System.out.println("ID: " + Integer.toString(claim.getID()));
+            System.out.println("Name: " + claim.getClaimerName());
+            System.out.println("Description: " + claim.getDescription());
+            System.out.println("Amount: " + claim.getClaimAmount());
+        }
+    }
 }
 
