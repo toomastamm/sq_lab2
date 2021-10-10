@@ -22,4 +22,23 @@ public class InsuranceClaimTest {
         Assertions.assertEquals(claim.getClaimAmount(), Float.parseFloat(amount));
         Assertions.assertFalse(claim.isApproved());
     }
+
+    @Test
+    public void testInsuranceClaimApproval() {
+        String name = "TestingName";
+        String description = "TestingDescription";
+        String amount = "9999.99";
+
+        AIUSStarter.init();
+        Scanner s = new Scanner(String.format("%s\n%s\n%s\n", name, description, amount)).useDelimiter("\n");
+        AIUSStarter.fileInsuranceClaim(s);
+
+        InsuranceClaim claim = AIUSStarter.claims.get(0);
+
+        String insuranceClaimID = Integer.toString(claim.getID());
+        Scanner s2 = new Scanner(String.format("%s\n", insuranceClaimID));
+        AIUSStarter.approveInsuranceClaim(s2);
+
+        Assertions.assertTrue(claim.isApproved());
+    }
 }
