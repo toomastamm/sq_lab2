@@ -28,8 +28,7 @@ public class AIUSStarter {
                 case "2" -> fileInsuranceClaim(s);
                 case "3" -> approveInsuranceClaim(s);
                 case "4" -> requestInsuranceClaimsData();
-                default -> {
-                }
+                default -> System.out.println("Invalid action. Choose action 1-4.");
             }
         }
     }
