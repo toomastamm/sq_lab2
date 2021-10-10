@@ -49,18 +49,18 @@ public class DataRequestTest {
         AIUSStarter.fileInsuranceClaim(s);
 
         AIUSStarter.requestInsuranceClaimsData();
-        Assertions.assertEquals(
+        Assertions.assertTrue(outContent.toString().contains
+                (
                 "-----------\r\n" +
-                        "ID: 0\r\n" +
-                        "Name: TestingName\r\n" +
-                        "Description: TestingDescription\r\n" +
-                        "Amount: 9999.99\r\n" +
-                        "-----------\r\n" +
-                        "ID: 1\r\n" +
-                        "Name: SecondTestEntry\r\n" +
-                        "Description: SecondDescription\r\n" +
-                        "Amount: 55.0\r\n" +
-                        "-----------\r\n" +
-                        "Returning to menu.\r\n", outContent.toString());
+                "ID: 0\r\n" +
+                "Name: TestingName\r\n" +
+                "Description: TestingDescription\r\n" +
+                "Amount: 9999.99\r\n" +
+                "-----------\r\n" +
+                "ID: 1\r\n" +
+                "Name: SecondTestEntry\r\n" +
+                "Description: SecondDescription\r\n" +
+                "Amount: 55.0\r\n"
+                ));
     }
 }
