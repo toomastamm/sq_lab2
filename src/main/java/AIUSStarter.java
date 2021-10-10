@@ -50,7 +50,7 @@ public class AIUSStarter {
             try {
                 System.out.println("Claim sum:");
                 sum = Float.parseFloat(s.nextLine());
-                if (sum < 0) {
+                if (sum == 0) {
                     sum = null;
                     System.out.println("Amount to claim has to be bigger than 0.");
                 }
@@ -77,6 +77,9 @@ public class AIUSStarter {
                 String inputIDString = s.nextLine();
                 inputID = Integer.parseInt(inputIDString);
 
+                if (inputID >= claims.size() || inputID < 0) {
+                    System.out.println("Invalid ID.");
+                }
             } catch (Exception ignored) {
 
             }
