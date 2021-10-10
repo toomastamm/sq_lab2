@@ -45,8 +45,15 @@ public class AIUSStarter {
         String name = s.nextLine();
         System.out.println("What happened:");
         String description = s.nextLine();
-        System.out.println("Claim sum:");
-        float sum = Float.parseFloat(s.nextLine());
+        Float sum = null;
+        while (sum == null) {
+            try {
+                System.out.println("Claim sum:");
+                sum = Float.parseFloat(s.nextLine());
+            } catch (Exception ignored) {
+
+            }
+        }
 
         InsuranceClaim newClaim = new InsuranceClaim(name, description, sum, false);
         claims.add(newClaim);
@@ -57,25 +64,28 @@ public class AIUSStarter {
 
     public static void approveInsuranceClaim(Scanner s) {
         System.out.println("-----------");
-        System.out.println("ID of insurance claim that will be approved:");
-        String inputIDString = s.nextLine();
-        int inputID = Integer.parseInt(inputIDString);
+        int inputID = -1;
 
-        if (inputID >= claims.size() || inputID < 0)
-        {
-            System.out.println("Invalid index, returning to menu.");
-            return;
+        while (inputID >= claims.size() || inputID < 0) {
+            try {
+                System.out.println("ID of insurance claim that will be approved:");
+                String inputIDString = s.nextLine();
+                inputID = Integer.parseInt(inputIDString);
+
+            } catch (Exception ignored) {
+
+            }
+
         }
         claims.get(inputID).setApproved(true);
 
-        System.out.println("Claim " + inputIDString + " has been approved, returning to menu.");
+        System.out.println("Claim " + inputID + " has been approved, returning to menu.");
     }
 
     public static void requestInsuranceClaimsData() {
-        for (InsuranceClaim claim : claims)
-        {
+        for (InsuranceClaim claim : claims) {
             System.out.println("-----------");
-            System.out.println("ID: " + Integer.toString(claim.getID()));
+            System.out.println("ID: " + claim.getID());
             System.out.println("Name: " + claim.getClaimerName());
             System.out.println("Description: " + claim.getDescription());
             System.out.println("Amount: " + claim.getClaimAmount());
